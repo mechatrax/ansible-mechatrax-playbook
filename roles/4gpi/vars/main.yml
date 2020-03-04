@@ -12,7 +12,6 @@ install_packages:
   - ufw
 
 purge_packages:
-  - avahi-daemon
   - gcc-4.9-base
   - gcc-5-base
   - gcc-6-base

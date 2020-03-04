@@ -34,3 +34,17 @@
 - name: copy config files
   copy: src=./ dest=/ owner=root group=root mode=0644
 
+- name: configure avahi-daemon
+  lineinfile: dest=/etc/avahi/avahi-daemon.conf
+              backrefs=yes
+              regexp={{ item.regexp }}
+              line={{ item.line }}
+              backup=yes
+  with_items:
+    - { regexp: '^#deny-interfaces=(.*)', line: 'deny-interfaces=' }
+    - { regexp: '^deny-interfaces=(.*)', line: '#deny-interfaces=\1' }
+    - { regexp: '^#deny-interfaces=(.*)', line: 'deny-interfaces=\1' }
+    - { regexp: '^deny-interfaces=((?!.*ppp0).*[^,])\n', line: 'deny-interfaces=\1,' }
+    - { regexp: '^deny-interfaces=((?!.*ppp0).*)', line: 'deny-interfaces=\1ppp0' }
+    - { regexp: '^deny-interfaces=((?!.*wwan0).*[^,])\n', line: 'deny-interfaces=\1,' }
+    - { regexp: '^deny-interfaces=((?!.*wwan0).*)', line: 'deny-interfaces=\1wwan0' }

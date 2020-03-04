@@ -17,14 +17,25 @@
   - { regexp: '^#HRNGDEVICE=/dev/hwrng', line: 'HRNGDEVICE=/dev/hwrng', insertafter: '^#HRNGDEVICE=' }
 
 - name: configure system.conf
-  lineinfile: dest=/etc/systemd/system.conf
-              regexp={{ item.regexp }}
-              insertafter={{ item.insertafter }}
-              line={{ item.line }}
-              backup=yes
-  with_items:
-  - { regexp: '^#RuntimeWatchdogSec=0', line: 'RuntimeWatchdogSec=10', insertafter: '\[Manager\]' }
-  - { regexp: '^#ShutdownWatchdogSec=10min', line: 'ShutdownWatchdogSec=10min', insertafter: '\[Manager\]' }
+  block:
+    - lineinfile: dest=/etc/systemd/system.conf
+                  backrefs=yes
+                  regexp={{ item.regexp }}
+                  line={{ item.line }}
+                  backup=yes
+      with_items:
+        - { regexp: '^ShutdownWatchdogSec=(.*)', line: '#ShutdownWatchdogSec=\1' }
+        - { regexp: '^#ShutdownWatchdogSec=', line: 'ShutdownWatchdogSec=10min' }
+        - { regexp: '^RuntimeWatchdogSec=(.*)', line: '#RuntimeWatchdogSec=\1' }
+        - { regexp: '^#RuntimeWatchdogSec=', line: 'RuntimeWatchdogSec=10' }
+    - lineinfile: dest=/etc/systemd/system.conf
+                  regexp={{ item.regexp }}
+                  insertafter={{ item.insertafter }}
+                  line={{ item.line }}
+                  backup=yes
+      with_items:
+        - { regexp: '^ShutdownWatchdogSec=.*', line: 'ShutdownWatchdogSec=10min', insertafter: '\[Manager\]' }
+        - { regexp: '^RuntimeWatchdogSec=.*', line: 'RuntimeWatchdogSec=10', insertafter: '\[Manager\]' }
 
 - name: disable periodic apt
   lineinfile: dest=/etc/apt/apt.conf.d/10periodic
