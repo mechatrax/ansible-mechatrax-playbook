@@ -1,13 +1,9 @@
 ---
 - name: remove packages
-  apt: name={{ item }} state=absent
-  with_items: 
-    - "{{ purge_packages }}"
+  apt: name={{ purge_packages }} state=absent
 
 - name: install additional packages
-  apt: name={{ item }} state=latest
-  with_items:
-    - "{{ install_packages }}"
+  apt: name={{ install_packages }} state=latest
 
 - name: allow everything and enable ufw
   ufw: state=enabled policy=allow
