@@ -4,7 +4,7 @@
   roles:
     - prepare
     - 4gpi
-    - sleepi2
+    - sleepi3
     - tweak
   vars:
     mechatrax_release: buster
