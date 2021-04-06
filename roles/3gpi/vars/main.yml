@@ -23,4 +23,5 @@ purge_packages:
   - libboost-iostreams1.58.0
   - libudev0
   - libsigc++-1.2-5c2
+  - triggerhappy
 

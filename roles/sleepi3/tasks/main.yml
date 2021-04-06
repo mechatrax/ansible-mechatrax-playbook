@@ -1,0 +1,7 @@
+---
+- name: remove packages
+  apt: name={{ purge_packages }} state=absent
+
+- name: install additional packages
+  apt: name={{ install_packages }} state=latest
+
