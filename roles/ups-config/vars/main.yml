@@ -1,0 +1,9 @@
+---
+copy_file1: 
+  - /usr/share/doc/sleepi3-monitor/examples/97-set_extin_level_trigger.sh
+
+copy_file2: 
+  - /usr/share/doc/sleepi3-monitor/examples/99-shutdown_by_continuous_voltage_drop.sh
+
+destination: 
+  - /etc/sleepi3-monitor/extin.d

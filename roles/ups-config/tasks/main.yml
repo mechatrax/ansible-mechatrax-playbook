@@ -1,0 +1,8 @@
+---
+- name: copy files
+  copy: 
+    src: "{{ item }}"
+    dest: '/etc/sleepi3-monitor/extin.d'
+  with_items:  
+    - "{{ copy_file1 }}"
+    - "{{ copy_file2 }}"
