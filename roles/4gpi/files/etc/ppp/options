@@ -1,5 +1,5 @@
 # /etc/ppp/options
-# 
+#
 # Originally created by Jim Knoble <jmknoble@mercury.interpath.net>
 # Modified for Debian by alvar Bray <alvar@meiko.co.uk>
 # Modified for PPP Server setup by Christoph Lameter <clameter@debian.org>
@@ -53,7 +53,7 @@ crtscts
 #escape 11,13,ff
 
 # Don't use the modem control lines.
-local
+#local
 
 # Specifies that pppd should use a UUCP-style lock on the serial device
 # to ensure exclusive access to the device.
@@ -70,7 +70,7 @@ hide-password
 # Use the modem control lines.  On Ultrix, this option implies hardware
 # flow control, as for the crtscts option.  (This option is not fully
 # implemented.)
-#modem
+modem
 
 # Set the MRU [Maximum Receive Unit] value to <n> for negotiation.  pppd
 # will ask the peer to send packets of no more than <n> bytes. The
@@ -334,10 +334,10 @@ noipx
 # A value of 0 means no limit. The default value is 10.
 #maxfail <n>
 
-# Initiate the link only on demand, i.e. when data traffic is present. 
+# Initiate the link only on demand, i.e. when data traffic is present.
 # With this option, the remote IP address must be specified by the user on
 # the command line or in an options file.  Pppd will initially configure
-# the interface and enable it for IP traffic without connecting to the peer. 
+# the interface and enable it for IP traffic without connecting to the peer.
 # When traffic is available, pppd will connect to the peer and perform
 # negotiation, authentication, etc.  When this is completed, pppd will
 # commence passing data packets (i.e., IP packets) across the link.

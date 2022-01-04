@@ -1,0 +1,22 @@
+---
+install_packages_4gpi:
+  - 4gpi-utils
+  - 4gpi-net-mods
+  - 4gpi-networkmanager
+  - jo
+  - jq
+  - modemmanager
+  - network-manager
+  - soracom
+  - ufw
+
+purge_packages_4gpi:
+  - gcc-8-base
+  - gcc-9-base
+  - libfribidi0
+  - libident
+  - libraspberrypi-doc
+  - libreadline6
+  - libsigc++-1.2-5c2
+  - triggerhappy
+  - rng-tools

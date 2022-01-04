@@ -3,7 +3,8 @@
   become: yes
   roles:
     - prepare
-    - 3gpi
+    - 4gpi
+    - sleepi3
     - tweak
   vars:
     mechatrax_release: buster
