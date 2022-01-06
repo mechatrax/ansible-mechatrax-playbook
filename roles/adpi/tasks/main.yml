@@ -1,0 +1,13 @@
+---
+- name: include vars for iio
+  include_vars: "iio.yml"
+  tags: adpi-backend-iio
+
+- name: include vars for spidev
+  include_vars: "spidev.yml"
+  tags: adpi-backend-spidev
+
+- name: install adpi packages
+  apt: name={{ install_packages_adpi }} state=latest
+  tags: always
+

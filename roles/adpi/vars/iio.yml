@@ -1,0 +1,6 @@
+---
+install_packages_adpi:
+  - raspberrypi-kernel-mtx
+  - adpi-firmware
+  - adpi-utils-backend-iio
+  - adpi-utils

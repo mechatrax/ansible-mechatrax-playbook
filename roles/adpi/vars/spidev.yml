@@ -1,0 +1,5 @@
+---
+install_packages_adpi:
+  - python3-adpi
+  - adpi-utils-backend-spidev
+  - adpi-utils

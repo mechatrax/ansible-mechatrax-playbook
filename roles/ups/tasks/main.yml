@@ -3,6 +3,7 @@
     src: "{{ item }}"
     dest: '/etc/sleepi3-monitor/voltage-1.d'
     mode: 0755
+    remote_src: yes
   with_items:
     - "{{ script_files }}"
 
