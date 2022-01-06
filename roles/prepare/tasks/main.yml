@@ -2,7 +2,7 @@
 - name: download mechatrax keyring
   get_url: url={{ mechatrax_archive_url }}/pool/main/m/mechatrax-archive-keyring/{{ mechatrax_archive_keyring_deb }}
            dest=/tmp/{{ mechatrax_archive_keyring_deb }}
-           sha256sum={{ mechatrax_archive_keyring_sha256sum }}
+           checksum=sha256:{{ mechatrax_archive_keyring_sha256sum }}
 
 - name: install mechatrax keyring
   apt: deb=/tmp/{{ mechatrax_archive_keyring_deb }}
@@ -13,6 +13,15 @@
             owner=root
             group=root
             mode=0644
+  when: mechatrax_release != "buster" and mechatrax_release != "stretch"
+
+- name: add mechatrax legacy apt repository
+  template: src=mechatrax-legacy.list
+            dest=/etc/apt/sources.list.d/mechatrax.list
+            owner=root
+            group=root
+            mode=0644
+  when: mechatrax_release == "buster" or mechatrax_release == "stretch"
 
 - name: update caches
   apt: update_cache=yes

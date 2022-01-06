@@ -6,12 +6,11 @@
 
 コマンドを実行して環境構築を行います。
 
-### 4GPi のセットアップを行う場合
+### Raspberry Pi OS に 4GPi のセットアップを行う場合
 ```
 ansible-playbook -i hosts 4gpi.yml
 ```
 
-### 3GPi のセットアップを行う場合
+### Raspberry Pi OS Legacy に 4GPi のセットアップを行う場合
 ```
-ansible-playbook -i hosts 3gpi.yml
-```
+ansible-playbook -i hosts 4gpi-legacy.yml

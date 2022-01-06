@@ -1,12 +1,15 @@
 ---
+- name: include vars
+  include_vars: "{{ mechatrax_release }}.yml"
+
 - name: remove packages
-  apt: name={{ purge_packages }} state=absent
+  apt: name={{ purge_packages_4gpi }} state=absent
 
 - name: copy config files
   copy: src=./ dest=/ owner=root group=root mode=0644
 
 - name: install additional packages
-  apt: name={{ install_packages }} state=latest
+  apt: name={{ install_packages_4gpi }} state=latest
 
 - name: allow everything and enable ufw
   ufw: state=enabled policy=allow

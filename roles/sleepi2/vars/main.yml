@@ -1,8 +1,0 @@
----
-install_packages:
-  - sleepi2-firmware
-  - sleepi2-utils
-  - sleepi2-monitor
-
-purge_packages:
-  - fake-hwclock

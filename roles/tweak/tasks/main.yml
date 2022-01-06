@@ -7,14 +7,20 @@
   with_items:
   - { regexp: '^XKBLAYOUT=', line: 'XKBLAYOUT="jp"' }
 
-- name: configure rng-tools
-  lineinfile: dest=/etc/default/rng-tools
-              regexp={{ item.regexp }}
-              insertafter={{ item.insertafter }}
-              line={{ item.line }}
-              backup=yes
-  with_items:
-  - { regexp: '^#HRNGDEVICE=/dev/hwrng', line: 'HRNGDEVICE=/dev/hwrng', insertafter: '^#HRNGDEVICE=' }
+#- name: check rng-tools configuration file
+#  stat:
+#    path: /etc/default/rng-tools
+#  register: rng_tools_config
+#
+#- name: configure rng-tools
+#  lineinfile: dest=/etc/default/rng-tools
+#              regexp={{ item.regexp }}
+#              insertafter={{ item.insertafter }}
+#              line={{ item.line }}
+#              backup=yes
+#  with_items:
+#  - { regexp: '^#HRNGDEVICE=/dev/hwrng', line: 'HRNGDEVICE=/dev/hwrng', insertafter: '^#HRNGDEVICE=' }
+#  when: rng_tools_config.stat.exists == True
 
 - name: configure system.conf
   block:
