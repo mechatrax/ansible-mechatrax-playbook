@@ -20,3 +20,4 @@ purge_packages_4gpi:
   - libsigc++-1.2-5c2
   - triggerhappy
   - rng-tools
+  - udisks2
