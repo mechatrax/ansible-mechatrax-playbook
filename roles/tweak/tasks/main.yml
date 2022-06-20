@@ -48,7 +48,11 @@
               create=yes
 
 - name: set timezone
-  command: timedatectl set-timezone Asia/Tokyo
+  file:
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    dest: /etc/localtime
+    state: link
+    force: yes
 
 - name: update timezone
   command: dpkg-reconfigure -f noninteractive tzdata
