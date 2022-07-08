@@ -1,0 +1,7 @@
+---
+- name: include vars
+  include_vars: "{{ mechatrax_release }}.yml"
+
+- name: purge packages
+  apt: name={{ purge_packages }} state=absent purge=yes
+

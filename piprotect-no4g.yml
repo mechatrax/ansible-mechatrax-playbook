@@ -1,8 +1,9 @@
 ---
-- hosts: raspi
+- hosts: all
   become: yes
   roles:
     - prepare
+    - purge
     - sleepi3
     - tweak
     - ups
