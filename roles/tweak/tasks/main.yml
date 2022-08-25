@@ -30,8 +30,6 @@
                   line={{ item.line }}
                   backup=yes
       with_items:
-        - { regexp: '^ShutdownWatchdogSec=(.*)', line: '#ShutdownWatchdogSec=\1' }
-        - { regexp: '^#ShutdownWatchdogSec=', line: 'ShutdownWatchdogSec=10min' }
         - { regexp: '^RuntimeWatchdogSec=(.*)', line: '#RuntimeWatchdogSec=\1' }
         - { regexp: '^#RuntimeWatchdogSec=', line: 'RuntimeWatchdogSec=10' }
     - lineinfile: dest=/etc/systemd/system.conf
@@ -40,7 +38,6 @@
                   line={{ item.line }}
                   backup=yes
       with_items:
-        - { regexp: '^ShutdownWatchdogSec=.*', line: 'ShutdownWatchdogSec=10min', insertafter: '\[Manager\]' }
         - { regexp: '^RuntimeWatchdogSec=.*', line: 'RuntimeWatchdogSec=10', insertafter: '\[Manager\]' }
 
 - name: disable periodic apt
@@ -51,7 +48,11 @@
               create=yes
 
 - name: set timezone
-  command: timedatectl set-timezone Asia/Tokyo
+  file:
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    dest: /etc/localtime
+    state: link
+    force: yes
 
 - name: update timezone
   command: dpkg-reconfigure -f noninteractive tzdata

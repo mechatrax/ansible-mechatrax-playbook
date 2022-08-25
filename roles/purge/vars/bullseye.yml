@@ -1,0 +1,12 @@
+---
+purge_packages:
+  - gcc-8-base
+  - gcc-9-base
+  - libfribidi0
+  - libident
+  - libraspberrypi-doc
+  - libreadline6
+  - libsigc++-1.2-5c2
+  - triggerhappy
+  - rng-tools
+  - udisks2

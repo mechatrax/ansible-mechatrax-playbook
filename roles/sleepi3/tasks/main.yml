@@ -1,6 +1,6 @@
 ---
-- name: remove packages
-  apt: name={{ purge_packages_sleepi3 }} state=absent
+- name: purge packages
+  apt: name={{ purge_packages_sleepi3 }} state=absent purge=yes
 
 - name: install additional packages
   apt: name={{ install_packages_sleepi3 }} state=latest
