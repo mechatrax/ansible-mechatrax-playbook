@@ -6,8 +6,8 @@
     - purge
     - sleepi3
     - adpi
-    - tweak
     - ups
+    - tweak
   vars:
     mechatrax_release: bullseye
     mechatrax_archive_url: http://mechatrax.github.io/raspbian/
