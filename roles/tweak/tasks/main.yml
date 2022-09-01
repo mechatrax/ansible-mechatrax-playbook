@@ -57,11 +57,27 @@
 - name: update timezone
   command: dpkg-reconfigure -f noninteractive tzdata
 
-- name: restart keyboard-setup service 
+- name: check keyboard-setup service
+  shell: systemctl is-active keyboard-setup.service
+  register: keyboard_setup_result
+  changed_when: no
+  failed_when: no
+  check_mode: no
+
+- name: restart keyboard-setup service
   service: name=keyboard-setup state=restarted
+  when: 'keyboard_setup_result.stdout == "active"'
+  
+- name: check console-setup service
+  shell: systemctl is-active console-setup.service
+  register: console_setup_result
+  changed_when: no
+  failed_when: no
+  check_mode: no
 
 - name: restart console-setup service
   service: name=console-setup state=restarted
+  when: 'console_setup_result.stdout == "active"'
 
 #- name: change wifi country
 #  command: raspi-config nonint do_wifi_country JP
