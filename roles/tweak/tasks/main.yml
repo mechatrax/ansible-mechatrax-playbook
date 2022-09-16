@@ -79,9 +79,6 @@
   service: name=console-setup state=restarted
   when: 'console_setup_result.stdout == "active"'
 
-#- name: change wifi country
-#  command: raspi-config nonint do_wifi_country JP
-
 #- name: change boot behaviour
 #  command: raspi-config nonint do_boot_behaviour B1
 
