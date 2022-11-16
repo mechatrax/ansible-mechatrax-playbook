@@ -5,6 +5,7 @@
     - prepare
     - purge
     - 4gpi
+    - netconf
     - tweak
   vars:
     mechatrax_release: bullseye

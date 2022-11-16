@@ -44,9 +44,3 @@
     - { regexp: '^deny-interfaces=((?!.*ppp0).*)', line: 'deny-interfaces=\1ppp0' }
     - { regexp: '^deny-interfaces=((?!.*wwan0).*[^,])\n', line: 'deny-interfaces=\1,' }
     - { regexp: '^deny-interfaces=((?!.*wwan0).*)', line: 'deny-interfaces=\1wwan0' }
-
-- name: activation NetworkManager
-  command: raspi-config nonint do_netconf 2
-
-- name: change wifi country
-  command: raspi-config nonint do_wifi_country JP
