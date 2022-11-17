@@ -5,6 +5,7 @@
     - prepare
     - purge
     - 4gpi
+    - netconf
     - sleepi3
     - adpi
     - tweak
