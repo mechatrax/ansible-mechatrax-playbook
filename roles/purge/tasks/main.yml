@@ -2,6 +2,9 @@
 - name: include vars
   include_vars: "{{ mechatrax_release }}.yml"
 
+- name: mark packages
+  shell: apt-mark manual {{ item }}
+  with_items: "{{ mark_packages | default([]) }}"
+
 - name: purge packages
   apt: name={{ purge_packages }} state=absent purge=yes
-
