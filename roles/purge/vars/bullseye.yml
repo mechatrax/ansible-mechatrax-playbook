@@ -1,4 +1,8 @@
 ---
+mark_packages:
+  - exfatprogs
+  - gdisk
+
 purge_packages:
   - gcc-8-base
   - gcc-9-base
