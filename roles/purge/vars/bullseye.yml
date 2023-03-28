@@ -12,5 +12,6 @@ purge_packages:
   - libreadline6
   - libsigc++-1.2-5c2
   - triggerhappy
+  - raspinfo
   - rng-tools
   - udisks2
