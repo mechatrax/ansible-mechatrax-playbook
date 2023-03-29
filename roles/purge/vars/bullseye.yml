@@ -2,6 +2,7 @@
 mark_packages:
   - exfatprogs
   - gdisk
+  - raspi-gpio
 
 purge_packages:
   - gcc-8-base
