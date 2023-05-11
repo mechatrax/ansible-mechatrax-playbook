@@ -4,7 +4,6 @@ purge_packages:
   - gcc-5-base
   - gcc-6-base
   - gcc-7-base
-  - freetype2-doc
   - libraspberrypi-doc
   - libboost-iostreams1.58.0
   - libudev0
