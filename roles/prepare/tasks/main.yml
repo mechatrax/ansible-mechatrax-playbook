@@ -1,6 +1,25 @@
 ---
+- name: get architecture
+  shell: dpkg --print-architecture
+  register: dpkg_architecture
+
+- name: set architecture as a fact
+  set_fact:
+    mechatrax_architecture: "{{ dpkg_architecture.stdout }}"
+
+- name: get release
+  shell: lsb_release -cs
+  register: lsb_release
+
+- name: set release as a fact
+  set_fact:
+    mechatrax_release: "{{ lsb_release.stdout }}"
+
+- name: include vars
+  include_vars: '{{ mechatrax_release }}.yml'
+
 - name: download mechatrax keyring
-  get_url: url={{ mechatrax_archive_url }}/pool/main/m/mechatrax-archive-keyring/{{ mechatrax_archive_keyring_deb }}
+  get_url: url=https://mechatrax.github.io/raspbian/pool/main/m/mechatrax-archive-keyring/{{ mechatrax_archive_keyring_deb }}
            dest=/tmp/{{ mechatrax_archive_keyring_deb }}
            checksum=sha256:{{ mechatrax_archive_keyring_sha256sum }}
 
@@ -15,8 +34,8 @@
             mode=0644
   when: mechatrax_release != "buster" and mechatrax_release != "stretch"
 
-- name: add mechatrax legacy apt repository
-  template: src=mechatrax-legacy.list
+- name: add mechatrax old apt repository
+  template: src=mechatrax-old.list
             dest=/etc/apt/sources.list.d/mechatrax.list
             owner=root
             group=root

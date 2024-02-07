@@ -1,0 +1,3 @@
+deb http://mechatrax.github.io/raspbian/ {{mechatrax_release}} main contrib non-free
+# Uncomment line below then 'apt-get update' to enable 'apt-get source'
+#deb-src http://mechatrax.github.io/raspbian/ {{mechatrax_release}} main contrib non-free

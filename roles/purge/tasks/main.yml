@@ -8,3 +8,7 @@
 
 - name: purge packages
   apt: name={{ purge_packages }} state=absent purge=yes
+
+- name: purge architecture specific packages
+  apt: name={{ vars['purge_packages_' + mechatrax_architecture] | default([]) }} state=absent purge=yes
+
