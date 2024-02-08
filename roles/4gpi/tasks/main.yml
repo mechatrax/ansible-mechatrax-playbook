@@ -1,6 +1,11 @@
 ---
 - name: include vars
-  include_vars: "{{ mechatrax_release }}.yml"
+  include_vars: "default.yml"
+  when: mechatrax_release != "buster" and mechatrax_release != "stretch"
+
+- name: include vars
+  include_vars: "old.yml"
+  when: mechatrax_release == "buster" or mechatrax_release == "stretch"
 
 - name: copy config files
   copy: src=./ dest=/ owner=root group=root mode=0644
