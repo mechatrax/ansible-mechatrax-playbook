@@ -4,6 +4,7 @@
   roles:
     - prepare
     - purge
+    - upgrade
     - 4gpi
     - sleepi3
     - tweak

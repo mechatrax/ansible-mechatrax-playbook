@@ -12,3 +12,8 @@
 - name: purge architecture specific packages
   apt: name={{ vars['purge_packages_' + mechatrax_architecture] | default([]) }} state=absent purge=yes
 
+- name: purge unused packages
+  include_role:
+    name: common
+    tasks_from: autopurge
+
