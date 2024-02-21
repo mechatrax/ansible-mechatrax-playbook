@@ -1,0 +1,14 @@
+---
+- name: purge unused packages
+  include_role:
+    name: common
+    tasks_from: autopurge
+
+- name: upgrade packages
+  apt: upgrade=dist
+
+- name: purge unused packages
+  include_role:
+    name: common
+    tasks_from: autopurge
+
