@@ -13,12 +13,7 @@
   shell: dpkg -l linux-image-* linux-headers-* | grep -v $(dpkg -l linux-image-rpi-* | awk '/^ii/{print$3}' | sort -n | uniq) | awk '/^ii/{print$2}'
   register: old_kernel_packages
 
-- name: detect chroot
-  command: systemd-detect-virt --chroot
-  register: result
-  ignore_errors: true
-
 - name: purge old kernel packages
   apt: name={{ old_kernel_packages.stdout_lines }} state=absent purge=yes
-  when: result.rc == 0
+  when: is_chroot
 

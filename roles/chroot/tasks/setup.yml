@@ -1,0 +1,14 @@
+---
+- name: backup initramfs.conf
+  copy:
+    src: /etc/initramfs-tools/initramfs.conf
+    dest: /etc/initramfs-tools/initramfs.conf~
+    remote_src: yes
+  when: is_chroot
+
+- name: change MODULES
+  lineinfile:
+    path: /etc/initramfs-tools/initramfs.conf
+    regexp: '^MODULES='
+    line: 'MODULES=most'
+  when: is_chroot

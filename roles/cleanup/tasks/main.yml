@@ -1,0 +1,6 @@
+---
+- name: run chroot cleanup if in chroot
+  include_role:
+    name: chroot
+    tasks_from: cleanup
+  when: is_chroot
