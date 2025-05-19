@@ -4,4 +4,3 @@
 
 - name: install additional packages
   apt: name={{ install_packages_sleepi3 }} state=latest
-

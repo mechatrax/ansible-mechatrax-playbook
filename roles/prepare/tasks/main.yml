@@ -44,4 +44,18 @@
 
 - name: update caches
   apt: update_cache=yes
-  
+
+- name: detect chroot
+  command: systemd-detect-virt --chroot
+  register: chroot_result
+  ignore_errors: true
+
+- name: set chroot fact
+  set_fact:
+    is_chroot: "{{ chroot_result.rc == 0 }}"
+
+- name: run chroot setup if in chroot
+  include_role:
+    name: chroot
+    tasks_from: setup
+  when: is_chroot
