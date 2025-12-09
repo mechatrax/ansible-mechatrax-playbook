@@ -1,0 +1,21 @@
+---
+mark_packages:
+  - exfatprogs
+  - gdisk
+
+purge_packages:
+  - triggerhappy
+  - udisks2
+
+purge_packages_armhf:
+  - gcc-10-base
+  - gcc-7-base
+  - gcc-8-base
+  - gcc-9-base
+  - install-info
+  - libfribidi0
+  - libreadline6
+  - libsigc++-1.2-5c2
+  - libtinfo5
+  - lsb-base
+  - paxctld

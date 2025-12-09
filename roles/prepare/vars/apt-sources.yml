@@ -1,0 +1,25 @@
+defaults:
+  format: deb822
+
+formats:
+  deb822:
+    template: mechatrax.sources
+    filename: mechatrax.sources
+    keyring: false
+
+  aptlist:
+    template: mechatrax.list
+    filename: mechatrax.list
+    keyring: true
+
+  aptlist_old:
+    template: mechatrax-old.list
+    filename: mechatrax.list
+    keyring: true
+
+repo_map:
+  trixie: deb822
+  bookworm: aptlist
+  bullseye: aptlist
+  buster: aptlist_old
+  stretch: aptlist_old
