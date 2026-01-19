@@ -4,7 +4,6 @@ mark_packages:
   - gdisk
 
 purge_packages:
-  - triggerhappy
   - udisks2
 
 purge_packages_armhf:
