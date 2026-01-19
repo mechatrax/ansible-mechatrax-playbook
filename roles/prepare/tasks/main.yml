@@ -1,4 +1,6 @@
 ---
+- include_vars: apt-sources.yml
+
 - name: get architecture
   shell: dpkg --print-architecture
   register: dpkg_architecture
@@ -18,29 +20,26 @@
 - name: include vars
   include_vars: '{{ mechatrax_release }}.yml'
 
+- name: determine repo format
+  set_fact:
+    mechatrax_config: "{{ formats[repo_map[mechatrax_release] | default(defaults.format)] }}"
+
 - name: download mechatrax keyring
   get_url: url=https://mechatrax.github.io/raspbian/pool/main/m/mechatrax-archive-keyring/{{ mechatrax_archive_keyring_deb }}
            dest=/tmp/{{ mechatrax_archive_keyring_deb }}
            checksum=sha256:{{ mechatrax_archive_keyring_sha256sum }}
+  when: mechatrax_config.keyring
 
 - name: install mechatrax keyring
   apt: deb=/tmp/{{ mechatrax_archive_keyring_deb }}
+  when: mechatrax_config.keyring
 
 - name: add mechatrax apt repository
-  template: src=mechatrax.list
-            dest=/etc/apt/sources.list.d/mechatrax.list
+  template: src={{ mechatrax_config.template }}
+            dest=/etc/apt/sources.list.d/{{ mechatrax_config.filename }}
             owner=root
             group=root
             mode=0644
-  when: mechatrax_release != "buster" and mechatrax_release != "stretch"
-
-- name: add mechatrax old apt repository
-  template: src=mechatrax-old.list
-            dest=/etc/apt/sources.list.d/mechatrax.list
-            owner=root
-            group=root
-            mode=0644
-  when: mechatrax_release == "buster" or mechatrax_release == "stretch"
 
 - name: update caches
   apt: update_cache=yes
