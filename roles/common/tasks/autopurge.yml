@@ -10,7 +10,7 @@
   apt: name={{ removed_packages.stdout_lines }} purge=yes state=absent
 
 - name: get old kernel packages
-  shell: dpkg -l linux-image-* linux-headers-* | grep -v $(dpkg -l linux-image-rpi-* | awk '/^ii/{print$3}' | sort -n | uniq) | awk '/^ii/{print$2}'
+  shell: dpkg -l linux-image-* linux-headers-* linux-kbuild-* | grep -v $(dpkg -l linux-image-rpi-* | awk '/^ii/{print$3}' | sort -n | uniq) | awk '/^ii/{print$2}'
   register: old_kernel_packages
 
 - name: purge old kernel packages
